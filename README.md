@@ -1,11 +1,7 @@
 # Attention
-Transformer : Attention Is All You Need
-
 [Attention Is All You Need](https://arxiv.org/abs/1706.03762)
 
 - ****Transformer : Attention Is All You Need****
-    
-    [1706.03762.pdf](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/1a8de203-3171-4106-87f5-c13ff1a2e4c3/1706.03762.pdf)
     
 
 ### RNN (Recurrent Neural Network):
@@ -16,7 +12,7 @@ RNN은 순차적인 데이터를 처리하는 데 사용되는 신경망 구조�
 - 장점: 순차적인 패턴을 학습할 수 있음, 시계열 데이터 처리에 적합
 - 단점: 장기 의존성(Long-Term Dependency)을 잘 학습하지 못하는 문제, Gradient Vanishing/Exploding 등의 문제 발생
 
-![스크린샷 2023-08-07 오후 5.15.50.png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/bd122d0b-89c2-4d3f-bd57-eb2d1b2ece98/%E1%84%89%E1%85%B3%E1%84%8F%E1%85%B3%E1%84%85%E1%85%B5%E1%86%AB%E1%84%89%E1%85%A3%E1%86%BA_2023-08-07_%E1%84%8B%E1%85%A9%E1%84%92%E1%85%AE_5.15.50.png)
+<img width="553" alt="1" src="https://github.com/junyong1111/Attention/assets/79856225/11058141-d431-45f9-bb99-e04569a06bda">
 
 각각의 단어를 컴퓨터가 이해할 수 있도록 Vector로 변환하며 이것을 **워드 임베딩**이라고 한다
 
@@ -36,9 +32,9 @@ LSTM은 RNN의 단점 중 하나인 장기 의존성 문제를 해결하기 위�
 - 장점: 장기 의존성 문제를 해결, 시계열 데이터 처리에 적합
 - 단점: 많은 파라미터와 연산이 필요하여 학습과정이 복잡함, 계산량이 크고 처리 속도가 상대적으로 느릴 수 있음
 
-![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/46d031a9-2fbc-4c34-8424-9a45b16bd117/Untitled.png)
+![2](https://github.com/junyong1111/Attention/assets/79856225/5778db32-8512-42ed-80c9-aa5019af3789)
 
-**Seq2Seq(Sequence-to-Sequence)**
+### **Seq2Seq(Sequence-to-Sequence)**
 
 딥러닝 모델 중 하나로, 시퀀스 데이터를 입력으로 받아 다른 시퀀스 데이터를 출력으로 생성하는 모델이다. 주로 자연어 처리(Natural Language Processing, NLP) 분야에서 사용되며, 기계 번역, 챗봇, 요약, 질의응답 등의 다양한 작업에 적용된다.
 
@@ -54,4 +50,81 @@ Seq2Seq 모델은 훈련과 추론(테스트) 단계에서 다르게 동작한�
 
 Seq2Seq 모델은 자연어 처리 태스크에서 탁월한 성능을 보여주고, 다양한 변형 및 발전된 모델들이 제안되어 계속해서 연구되고 있다. 이러한 모델들은 자연어 이해와 생성 작업에 큰 도움을 주며, 실제 응용에서도 많이 활용되고 있다.
 
-### GRU
+<img width="553" alt="3" src="https://github.com/junyong1111/Attention/assets/79856225/772bf6da-6238-4f0c-95ab-fd13b2995903">
+
+
+<img width="1095" alt="4" src="https://github.com/junyong1111/Attention/assets/79856225/37133b0a-ae34-432e-a1c9-d8373fe0d469">
+
+
+## Transformer
+
+### Architecture
+
+<img width="1164" alt="5" src="https://github.com/junyong1111/Attention/assets/79856225/6177b3d5-911c-48f3-ae7c-ff56964f3761">
+
+<img width="1096" alt="6" src="https://github.com/junyong1111/Attention/assets/79856225/71b89fff-14cf-422d-811b-6120e2b96b14">
+
+### 1. Word Embedding
+
+<img width="234" alt="7" src="https://github.com/junyong1111/Attention/assets/79856225/64d03bce-577a-4f9f-ba7a-61970cfbf951">
+
+
+**각각의 단어들을 벡터로 변환 하며 벡터들이 한번에 들어가므로 위치 정보가 없다.** 
+
+**따라서 위치값을 알려주기 위해 Positional Encoding을 해준다.**
+
+<img width="557" alt="8" src="https://github.com/junyong1111/Attention/assets/79856225/f2c5cb78-3c28-4501-bdd2-f8718ce47230">
+
+<img width="511" alt="9" src="https://github.com/junyong1111/Attention/assets/79856225/d4db980d-9250-427a-8a9f-0146fbfc6fc4">
+
+### 2. Self-Attention
+
+<img width="212" alt="10" src="https://github.com/junyong1111/Attention/assets/79856225/6b5922c5-7c4e-4ee5-865c-9cb12c259808">
+
+Self-Attention은 문장 내 단어들 간의 상호 관계를 이해하기 위한 메커니즘이다. 각 단어는 모든 다른 단어들에 대해 가중치를 계산하여 중요한 정보를 집중적으로 수집한다. 이 가중치는 "어텐션 스코어"로 나타내며, 주어진 단어와 다른 단어 간의 유사도를 기반으로 계산된다. 이러한 Self-Attention을 여러 차례 반복하여 문장 내 정보를 효과적으로 추출한다.
+
+**어텐션 스코어를 계산하는 방법**
+
+1. Q**uery, Key, Value 생성:** 주어진 입력 시퀀스에 대해 Query, Key 및 Value를 생성한다. 이들은 선형 변환을 통해 생성되며, Query는 주로 해당 위치에서 어떤 정보를 얻고자 하는지를 나타내고, Key와 Value는 각각 해당 위치의 정보를 나타낸다.
+2. **어텐션 스코어 계산:** Query와 Key 사이의 유사도를 계산한다. 이를 위해 Query와 Key 사이의 내적(dot product)을 계산한다. 내적의 결과는 어텐션 스코어가 되며, 스코어는 각 Key에 대해 Query와의 유사성을 나타낸다.
+3. **스케일링:** 어텐션 스코어가 너무 크면 계산이 불안정해질 수 있으므로, 스케일링을 적용한다. 일반적으로 스케일링 인자로 루트값을 사용하여 어텐션 스코어를 나누어준다.
+4. **소프트맥스 적용:** 스케일링된 어텐션 스코어에 소프트맥스 함수를 적용하여 정규화된 어텐션 가중치를 얻는다. 이렇게 하면 각 Key의 중요도가 확률 분포로 표현된다.
+5. **가중합 계산:** 소프트맥스를 통해 얻은 어텐션 가중치와 Value를 곱하여 가중합을 계산한다. 이 가중합은 Query 위치에서의 최종 출력을 생성하는 데 사용된다.
+
+찾고자하는 단어의 Query를 가지고 모든 문장의 Key를 내적하여 가장 유사한 값을 찾아낸다.
+
+<img width="512" alt="11" src="https://github.com/junyong1111/Attention/assets/79856225/fa89ac5d-77fa-4488-aeaa-6b9819509749">
+
+<img width="534" alt="12" src="https://github.com/junyong1111/Attention/assets/79856225/3e6d81b1-a0d5-4d80-861a-ecc9d9ac3fd4">
+
+### 3. 정리
+
+1. 워드 임베딩이 딥러닝이 생성한 Weight와 연산하여 Query, Key, Value 3개의 벡터로 변환
+    
+    <img width="984" alt="13" src="https://github.com/junyong1111/Attention/assets/79856225/e48ba6a0-0388-46b8-964c-8b93735c36e2">
+
+    
+2. 각 해당하는 Query벡터는 순차적으로 모든 Key와 내적 연산 후 소프트맥스 연산
+    
+    <img width="1113" alt="14" src="https://github.com/junyong1111/Attention/assets/79856225/98938fad-ea08-4482-9033-0cf3bf826273">
+    
+3. 소프트맥스 결과값과 Value 값과 곱한 후 모든 값들을 합쳐서 하나의output을 생성
+    
+    <img width="989" alt="15" src="https://github.com/junyong1111/Attention/assets/79856225/c03c8414-c3ed-4b83-a6de-25c809347ed0">
+    
+4. 위와 같은 방법으로 각각의 워드임베딩마다 각각의 output을 생성
+    
+    <img width="963" alt="16" src="https://github.com/junyong1111/Attention/assets/79856225/c5522082-4b02-41c8-9ae9-a9460e0ead60">
+    
+5. 문장을 input으로 넣으면 해당하는 문장을 나타내는 output 행렬이 나옴
+    
+    <img width="879" alt="17" src="https://github.com/junyong1111/Attention/assets/79856225/b9715632-45ad-4a3a-80ce-8d4c5c456ed4">
+
+    
+6. 각각의 어텐션에서 나온 벡터들을 concat 이후 학습된 weight와 연산하여 초기 demention을 맞춰줌
+    
+    <img width="1031" alt="18" src="https://github.com/junyong1111/Attention/assets/79856225/28abe395-b6a6-46b1-9194-5922001053cb">
+    
+    1. 전체 과정
+        
+        <img width="1025" alt="19" src="https://github.com/junyong1111/Attention/assets/79856225/288a2110-1ce8-4f76-8e19-726fb0efcf46">
